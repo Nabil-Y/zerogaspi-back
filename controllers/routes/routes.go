@@ -25,5 +25,6 @@ func InitRoutes(app *fiber.App, uc handlers.UserController) {
 	v1.Get("/users", uc.GetUsers)
 	v1.Get("/users/:userId", uc.GetUserById)
 	v1.Patch("/users/:userId", uc.UpdateUserById)
-	v1.Delete("/users/:userId", uc.DeleterUserById)
+	v1.Delete("/users/:userId", uc.DeleteUserById)
+	v1.Delete("/users", uc.DeleteUsers)
 }

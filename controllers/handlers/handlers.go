@@ -70,7 +70,7 @@ func (controller *UserController) UpdateUserById(c *fiber.Ctx) error {
 	return c.Status(200).JSON(updatedUser)
 }
 
-func (controller *UserController) DeleterUserById(c *fiber.Ctx) error {
+func (controller *UserController) DeleteUserById(c *fiber.Ctx) error {
 	userId := c.Params("userId")
 	isDeleted := controller.userRepository.DeleteUser(userId)
 
@@ -81,4 +81,15 @@ func (controller *UserController) DeleterUserById(c *fiber.Ctx) error {
 
 	response := fmt.Sprintf("User with id %s successfuly deleted", userId)
 	return c.Status(200).SendString(response)
+}
+
+func (controller *UserController) DeleteUsers(c *fiber.Ctx) error {
+	// TODO: Add flag, only in test mode
+	isDeleted := controller.userRepository.DeleteUsers()
+
+	if isDeleted != nil {
+		return c.Status(500).SendString("Can't delete users")
+	}
+
+	return c.Status(200).SendString("Users deleted")
 }

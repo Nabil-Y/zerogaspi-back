@@ -86,3 +86,8 @@ func (ur *userRepositoryImpl) DeleteUser(userId string) error {
 	}
 	return nil
 }
+
+func (ur *userRepositoryImpl) DeleteUsers() error {
+	ur.DB.Exec("DELETE FROM users")
+	return nil
+}
